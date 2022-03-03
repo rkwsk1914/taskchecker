@@ -50,7 +50,7 @@ export class CalendarCrelater extends Fetch {
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,listWeek,dayGridWeek'
       },
-      showNonCurrentDates: false,
+      // showNonCurrentDates: false,
       businessHours: {
         daysOfWeek: [1, 2, 3, 4, 5], // Monday - Thursday
         startTime: '10:00', // a start time (10am in this example)

@@ -25,6 +25,6 @@ $(window).on('load', ():void => {
   const a = new App()
   a.doing()
 
-  const userName: string = a.paramData.staffName ? a.paramData.staffName : 'Coder Staff'
-  $('h1').text(userName)
+  const userName: string = a.paramData.staffName ? decodeURI(a.paramData.staffName) : 'Coder Staff'
+  $('.js-title').text(userName)
 })
