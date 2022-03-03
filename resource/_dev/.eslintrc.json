@@ -1,0 +1,42 @@
+{
+  "root" : true,
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jquery": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:vue/recommended",
+    "standard"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+        "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "vue",
+    "@typescript-eslint"
+  ],
+  "settings": {
+    "react": {
+        "version": "detect"
+    }
+  },
+  "rules": {
+    "no-use-before-define": "off",
+    "no-unused-vars": "warn",
+    "no-void": "off",
+    "node/handle-callback-err": "off",
+    "no-unused-expressions": "warn",
+    "no-var": "warn",
+    "no-new-func" : "warn",
+    "no-undef" : "warn",
+    "no-tabs": 0
+  }
+}
