@@ -30,15 +30,18 @@ export class CalendarCrelater extends Fetch {
     this.events = []
   }
 
-  async createCalendar (userId: string): Promise<void> {
+  async createCalendar (userId: string): Promise<string> {
     if (!userId || userId === '') {
-      return
+      return 'URL param "userId" is unknown.'
     }
 
     this.events = await this.taskChecker.doGetUserActivities(userId)
+    // this.events = await this.taskChecker.testGetUserActivities(userId)
     await this.getHoliday()
 
     console.log(this.events)
+
+    // console.log(this.events)
     const calendarEl: HTMLElement = document.getElementById('calendar')!
     const calendar = new Calendar(calendarEl, {
       plugins: [dayGridPlugin, timeGridPlugin, listPlugin, bootstrap5Plugin],
@@ -48,7 +51,7 @@ export class CalendarCrelater extends Fetch {
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth,timeGridWeek,listWeek,dayGridWeek'
+        right: 'dayGridMonth,dayGridWeek,listWeek,timeGridWeek'
       },
       // showNonCurrentDates: false,
       businessHours: {
@@ -63,14 +66,20 @@ export class CalendarCrelater extends Fetch {
       },
       events: this.events
     })
-    calendar.render()
+
+    try {
+      calendar.render()
+    } catch (e) {
+      return e
+    }
+    return ''
   }
 
   async getHoliday (): Promise<void> {
     const today = new Date()
     const year = today.getFullYear()
     const holidays: any = await this.doGet(`https://holidays-jp.github.io/api/v1/${year}/date.json`)
-    console.log(JSON.parse(holidays))
+    // console.log(JSON.parse(holidays))
     await this.getHolidayEvent(JSON.parse(holidays))
     return Promise.resolve()
   }
@@ -103,7 +112,7 @@ export class CalendarCrelater extends Fetch {
   }
 
   formatDate (day: string): string {
-    console.log(day)
+    // console.log(day)
     const date = new Date(day)
     const result: string = date.toISOString()
     return result

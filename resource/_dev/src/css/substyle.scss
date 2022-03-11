@@ -8,9 +8,15 @@ h1 {
 
 #calendar {
   max-width: 950px;
-  margin: 0 auto;
+  margin: 0 auto 50px;
 }
 
 .fc .fc-daygrid-day.fc-day-today {
   background-color: yellow;
+}
+
+#status {
+  text-align: center;
+  font-size: 64px;
+  font-weight: bold;
 }
