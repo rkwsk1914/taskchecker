@@ -274,7 +274,7 @@ export class TaskChecker {
   }
 
   getTicketIssueOnTimeData (data: any, activity: any, action: string): EventItem {
-    const assignee: string = data.assignee.name
+    const assignee: string = data.assignee ? data.assignee.name : ''
     const enddate = data.dueDate
       ? new Date(data.dueDate)
       : new Date(data.created)
@@ -297,8 +297,8 @@ export class TaskChecker {
       return
     }
 
-    // console.log(data)
-    const assignee: string = data.assignee.name
+    console.log(data)
+    const assignee: string = data.assignee ? data.assignee.name : ''
     // console.log(data)
     const enddate = data.dueDate
       ? new Date(data.dueDate)
